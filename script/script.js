@@ -11,6 +11,9 @@ function handleKeyUp(event) {
             jump();
         }
     }
+    if (event.keyCode == 13) {
+        reloadThePage()
+    }
 }
 
 function jump() {
@@ -58,7 +61,11 @@ function createCactus() {
             // Game over  
             clearInterval(leftTimer);
             isGameOver = true;
-            document.body.innerHTML = '<h1 class="game-over">Fim de jogo</h1>';
+            document.body.innerHTML = `<div class="game-over">
+            <h1>Fim de jogo</h1>
+            <button class="reload" onclick="reloadThePage()">Reiniciar jogo</button>
+            </div> `;
+
         } else {
             cactusPosition -= 10;
             cactus.style.left = cactusPosition + 'px';
@@ -66,6 +73,10 @@ function createCactus() {
     }, 20);
 
     setTimeout(createCactus, randomTime);
+}
+
+function reloadThePage() {
+    window.location.reload();
 }
 
 createCactus();
